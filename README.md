@@ -30,7 +30,7 @@ on cached output from the one before it. All scripts share `config.py`
 | 6 | `temporal_ic_calendar_month.py` | Visit-level IC trend by calendar month | Figure 3A |
 | 7 | `temporal_ic_visit_sequence.py` | Visit-level IC trend by visit sequence | Figure 3B |
 | 8 | `pmi_analysis.py` | 2-term and 3-term PMI, SNOMED-only and lab-augmented, all subtypes vs. controls | Figure 4A-C |
-| 9 | `pmi_effect_estimates.py` | Counts, percentages, PMI difference, FDR-corrected p, bootstrap stability for every tested pair/triplet | Supplementary Tables (reviewer-requested effect sizes/stability) |
+| 9 | `pmi_effect_estimates.py` | Counts, percentages, PMI difference, FDR-corrected p, bootstrap stability for every tested pair/triplet | Supplementary Table |
 | 10 | `extract_renal_terms.py` | AL amyloidosis visits with SNOMED-coded renal terms | Input to Figure 5 |
 | 11 | `extract_lab_renal_findings.py` | AL amyloidosis visits with lab-derived renal findings | Input to Figure 5 |
 | 12 | `merge_renal_findings.py` | Combined SNOMED + lab-derived renal findings per visit | Input to Figure 5 |
