@@ -4,8 +4,7 @@ Subgroup IC comparison: Controls vs. Localised Cutaneous vs. AL Amyloidosis
 
 NOTE: this script depends on a cache entry "diagnosis_ic_NEW_variance_matched"
 containing visit-level IC data, keyed under the same cache_key used by
-matching.py. That cache entry is produced by a separate IC-computation
-script not yet included in this repository -- add it once available.
+matching.py.
 """
 
 import pandas as pd
