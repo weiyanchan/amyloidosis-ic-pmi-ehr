@@ -1,16 +1,5 @@
 """
-Supplementary evidence table for PMI co-occurrence findings (AL amyloidosis
-vs. controls): counts, percentages, PMI difference (point estimate and
-bootstrap 95% CI), and FDR-corrected p-value, for every pair and triplet
-that passed the existing minimum-patient threshold in
-compare_2pmi/compare_3pmi.
-
 Requires pmi_analysis.py in the same directory (or on the Python path).
-
-Output: one Excel workbook with four submission-ready sheets
-(Pairs/Triplets x SNOMED-only/SNOMED-plus-labs), each combining the point
-estimate and bootstrap columns in a single row per finding, sorted by
-corrected p-value.
 """
 
 import numpy as np
@@ -27,11 +16,6 @@ SUBGROUP = "AL_Amyloidosis"
 N_BOOTSTRAP = 1000
 SEED = 42
 
-
-# ---------------------------------------------------------------------------
-# Percentages (counts are already in the comparison table; PMI point
-# estimates and pmi_difference are also already present via calculate_2/3term_pmi)
-# ---------------------------------------------------------------------------
 
 def add_percentages(df, count_col, total_col, ctrl_count_col, ctrl_total_col):
     """Adds % subgroup / % control columns to a compare_2pmi/compare_3pmi table.
@@ -151,13 +135,10 @@ def add_bootstrap_columns(df, term_col, subgroup_terms, control_terms, n_terms, 
 
 
 # ---------------------------------------------------------------------------
-# Formatting for submission
+# Formatting
 # ---------------------------------------------------------------------------
 
 def format_for_supplementary(df, term_col):
-    """Renames and reorders columns into a clean, submission-ready table.
-    Returns an empty table with the expected column headers if no
-    pairs/triplets were found (e.g. SNOMED-only triplet analysis)."""
 
     expected_columns = [
         "Finding", "N patients AL (with finding)", "N patients AL (total tested)", "% AL",
@@ -214,8 +195,7 @@ def build_control_terms(control_df, min_terms):
 
 def run_full_analysis(analysis_name, include_lab_terms):
     """Runs the effect-size and bootstrap pipeline for one analysis mode
-    (SNOMED-only or lab-augmented), mirroring the original pipeline's
-    two-pass structure."""
+    (SNOMED-only or lab-augmented)."""
 
     print(f"\n{'=' * 60}")
     print(f"Analysis mode: {analysis_name}")
@@ -286,27 +266,6 @@ def main():
         pairs_with_labs.to_excel(writer, sheet_name="Pairs_SNOMED_plus_labs", index=False)
         triplets_with_labs.to_excel(writer, sheet_name="Triplets_SNOMED_plus_labs", index=False)
 
-        notes = pd.DataFrame({
-            "Note": [
-                f"Minimum patient threshold: a pair/triplet was tested only if present in "
-                f">= {MIN_PATIENTS_THRESHOLD} patients in both the {SUBGROUP} group and the "
-                f"control group.",
-                "PMI difference (AL - controls) is the point estimate computed directly "
-                "from the observed data, as in the original PMI pipeline.",
-                f"Bootstrap: {N_BOOTSTRAP} resamples with replacement, drawn independently from "
-                f"the {SUBGROUP} and control cohorts (group membership preserved), recomputing "
-                "the PMI difference between groups at each iteration. Reported as the median "
-                "and 95% interval (2.5th-97.5th percentile) across valid iterations.",
-                "'% bootstrap iterations undefined' reflects resamples where zero co-occurrence "
-                "of the finding occurred in one or both groups, making PMI undefined for that "
-                "iteration; a high value indicates a sparse underlying finding.",
-                "SNOMED_only sheets correspond to Figure 4A (coded diagnoses only); "
-                "SNOMED_plus_labs sheets correspond to Figure 4B/4C (augmented with "
-                "lab-derived phenotypes for proteinuria, nephrotic-range proteinuria, and "
-                "microscopic haematuria).",
-            ]
-        })
-        notes.to_excel(writer, sheet_name="Methods_Notes", index=False)
 
     print(f"\nOutput written to: {output_path}")
 
