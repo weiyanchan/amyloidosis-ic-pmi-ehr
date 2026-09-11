@@ -4,11 +4,6 @@ nephrotic-range proteinuria, microscopic haematuria) into a single
 per-visit table for AL amyloidosis patients, combining findings by source
 and computing patient- and finding-level summaries. Output feeds
 figure5_renal_chest_pain_timeline.py.
-
-Requires RENAL_TERMS_FILE and LAB_RENAL_FINDINGS_FILE (config.py) --
-precomputed per-visit extractions of SNOMED-coded and lab-derived renal
-findings respectively. The scripts producing these are not yet included in
-this repository.
 """
 
 import os
