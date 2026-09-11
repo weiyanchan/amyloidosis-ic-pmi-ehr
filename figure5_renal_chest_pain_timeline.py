@@ -2,13 +2,6 @@
 Figure 5: timeline of pre-diagnosis renal (proteinuria, nephrotic-range
 proteinuria, microscopic haematuria) and chest pain findings in AL
 amyloidosis patients, relative to diagnosis date.
-
-Requires COMBINED_RENAL_FILE (config.py) -- a precomputed workbook
-combining SNOMED-coded and lab-derived renal findings per visit (sheet
-'Combined_All_Visits', columns including Patient_ID, Months_From_Diagnosis,
-All_Renal_Findings, Matching_Terms_SNOMED, Matching_Terms_Lab). This file
-is produced by a separate extraction step not yet included in this
-repository.
 """
 
 import pandas as pd
