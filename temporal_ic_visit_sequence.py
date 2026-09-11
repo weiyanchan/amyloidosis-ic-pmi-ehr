@@ -1,8 +1,7 @@
 """
 Temporal IC trend by visit sequence (Figure 3B). Each patient's visits are
 re-indexed to a sequence number relative to their diagnosis/reference visit
-(sequence 0), rather than calendar time -- this is a standardisation
-against irregular gaps between visits (see Methods).
+(sequence 0), rather than calendar time.
 """
 
 import os
